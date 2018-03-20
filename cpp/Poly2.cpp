@@ -16,7 +16,7 @@ void Poly2::solve()
 {
 	Complex discriminant = B*B - A*C*4;
 	x[0] = (-B - discriminant.sqrt()) / (A*2);
-	x[1] = (-B - discriminant.sqrt()) / (A*2);
+	x[1] = (-B + discriminant.sqrt()) / (A*2);
 }
 
 void Poly2::print()

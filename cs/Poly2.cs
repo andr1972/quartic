@@ -24,7 +24,7 @@ namespace polyRoots
             Complex discriminant = B * B - A * C * 4;
             x = new Complex[2];
             x[0] = (-B - discriminant.sqrt()) / (A * 2);
-            x[1] = (-B - discriminant.sqrt()) / (A * 2);
+            x[1] = (-B + discriminant.sqrt()) / (A * 2);
         }
 
         public void print()
