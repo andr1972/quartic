@@ -53,7 +53,7 @@ void testRandom()
 		try
 		{
 			poly.solve();
-			poly.check();
+			//poly.check();
 		}
 		catch (...){
 			printf("A=%s B=%s C=%s D=%s E=%s\n", poly.A.toString().c_str(), poly.B.toString().c_str(),

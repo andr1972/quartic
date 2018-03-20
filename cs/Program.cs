@@ -134,7 +134,7 @@ namespace polyRoots
                 try
                 {
                     poly.solve();
-                    poly.check();
+                    //poly.check();
                 }
                 catch {
                     Console.WriteLine("A={0} B={1} C={2} D={3} E={4}", poly.A, poly.B, poly.C, poly.D, poly.E);

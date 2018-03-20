@@ -1,4 +1,5 @@
 ﻿using System;
+using Util;
 
 namespace polyRoots
 {

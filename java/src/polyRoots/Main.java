@@ -140,7 +140,7 @@ public class Main {
 				Complex E = c();
 				Poly4 poly = new Poly4(A,B,C,D,E);
 				poly.solve();
-				poly.check();
+				//poly.check();
 				//poly.print();
 				max = Math.max(max, poly.rootError);
 
@@ -288,8 +288,8 @@ public class Main {
 					d,
 					e);
 			poly.solve();
-			poly.check();
-			poly.print();
+			//poly.check();
+			//poly.print();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
