@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ class Complex
 	/** Record whether this Complex1 number is infinite. */
 	bool IsInfinite;
 public:
-	static Complex createComplex(double realPart, double imaginaryPart);
+	static Complex createComplex(const double realPart, const double imaginaryPart);
 	/** The square root of -1. A number representing "0.0 + 1.0i" */
 	static Complex I;
 	// CHECKSTYLE: stop ConstantName
@@ -31,34 +32,24 @@ public:
 	Complex(double real);
 	Complex(double real, double imaginary);
 	~Complex() {};
-	Complex operator=(Complex & src);
-	double getImaginary(){ return imaginary; };
-	double getReal(){ return real; };
+	Complex operator=(const Complex &src);
+	double getImaginary()const{ return imaginary; };
+	double getReal()const{ return real; };
 	double abs();
-	Complex operator+(Complex &addend);
-	//Complex add(Complex &addend);
-	//Complex add(double addend);
+	Complex operator+(const Complex &addend);
 	Complex operator+(double addend);
 	Complex conjugate();
-	Complex operator/(Complex &divisor);
+	Complex operator/(const Complex &divisor);
 	Complex operator/(double divisor);
-	//Complex divide(Complex &divisor);
-	//Complex divide(double divisor);
 	Complex reciprocal();
-	bool Equals(Complex &c);
-	static bool equals(Complex &x, Complex &y, double eps);
-	Complex operator*(Complex &factor);
-	//Complex multiply(Complex &factor);
-	//Complex multiply(int factor);
+	bool Equals(const Complex &c) const;
+	static bool equals(const Complex &x, const Complex &y, double eps);
+	Complex operator*(const Complex &factor);
 	Complex operator*(int factor);
-	//Complex multiply(double factor);
 	Complex operator*(double factor);
-	//Complex negate();
 	Complex operator-();
-	//Complex subtract(Complex &subtrahend);
-	Complex operator-(Complex &subtrahend);
+	Complex operator-(const Complex &subtrahend);
 	Complex operator-(double subtrahend);
-	//Complex subtract(double subtrahend);
 	Complex log();
 	Complex acos();
 	Complex asin();
@@ -66,7 +57,7 @@ public:
 	Complex cos();
 	Complex cosh();
 	Complex exp();
-	Complex pow(Complex &x);
+	Complex pow(const Complex &x);
 	Complex pow(double x);
 	Complex sin();
 	Complex sinh();

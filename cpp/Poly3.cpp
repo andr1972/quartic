@@ -5,7 +5,7 @@
 * Create a polynomial from given coefficients.
 *
 */
-Poly3::Poly3(Complex &a, Complex &b, Complex &c, Complex &d)
+Poly3::Poly3(const Complex &a, const Complex &b, const Complex &c, const Complex &d)
 {
 	this->A = a;
 	this->B = b;

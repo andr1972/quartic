@@ -96,9 +96,8 @@ void testRandom()
 
 int main()
 {
-	//testRandom();
+	testRandom();
 	//test();
-	randomRoots();
     return 0;
 }
 

@@ -11,7 +11,7 @@ class Poly3
 public:
 	Complex A, B, C, D;
 	Complex x[3];
-	Poly3(Complex &a, Complex &b, Complex &c, Complex &d);
+	Poly3(const Complex &a, const Complex &b, const Complex &c, const Complex &d);
 	~Poly3(){};
 	double maxDist(Complex *roots);
 	void solve();

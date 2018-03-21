@@ -1,7 +1,8 @@
 #include "Complex.h"
-#define _USE_MATH_DEFINES
 #include <math.h>
 #include <string>
+
+#define M_PI		3.14159265358979323846
 
 Complex Complex::I(0.0, 1.0);
 Complex Complex::NaN(NAN, NAN);
@@ -36,7 +37,7 @@ Complex::Complex(double real, double imaginary)
 		(isinf(real) || isinf(imaginary));
 }
 
-Complex Complex::operator=(Complex & src)
+Complex Complex::operator=(const Complex &src)
 {
 	this->real = src.real;
 	this->imaginary = src.imaginary;
@@ -98,8 +99,7 @@ double Complex::abs()
 * @param  addend Value to be added to this {@code Complex}.
 * @return {@code this + addend}.
 */
-Complex Complex::operator+(Complex &addend)
-//Complex Complex::add(Complex &addend)
+Complex Complex::operator+(const Complex &addend)
 {
 	if (IsNaN || addend.IsNaN)
 	{
@@ -191,8 +191,7 @@ Complex Complex::conjugate()
 * @param divisor Value by which this {@code Complex} is to be divided.
 * @return {@code this / divisor}.
 */
-Complex Complex::operator/(Complex &divisor)
-//Complex Complex::divide(Complex &divisor)
+Complex Complex::operator/(const Complex &divisor)
 {
 	if (IsNaN || divisor.IsNaN)
 	{
@@ -310,7 +309,7 @@ Complex Complex::reciprocal()
 * is {@code null}, not an instance of {@code Complex}, or not equal to
 * this instance.
 */
-bool Complex::Equals(Complex &c)
+bool Complex::Equals(const Complex &c) const
 {
 	if (c.IsNaN)
 	{
@@ -337,7 +336,7 @@ bool Complex::Equals(Complex &c)
 *
 * @see Precision#equals(double,double,double)
 */
-bool Complex::equals(Complex &x, Complex &y, double eps)
+bool Complex::equals(const Complex &x, const Complex &y, double eps)
 {
 	return fabs(x.real - y.real) <= eps &&
 		fabs(x.imaginary - y.imaginary) <= eps;
@@ -364,7 +363,7 @@ bool Complex::equals(Complex &x, Complex &y, double eps)
 * @param  factor value to be multiplied by this {@code Complex}.
 * @return {@code this * factor}.
 */
-Complex Complex::operator*(Complex &factor)
+Complex Complex::operator*(const Complex &factor)
 {
 	if (IsNaN || factor.IsNaN)
 	{
@@ -381,12 +380,7 @@ Complex Complex::operator*(Complex &factor)
 	return createComplex(real * factor.real - imaginary * factor.imaginary,
 		real * factor.imaginary + imaginary * factor.real);
 }
-/*
-Complex Complex::multiply(Complex &factor)
-{
-	return ZERO;
-}
-*/
+
 /**
 * Returns a {@code Complex} whose value is {@code this * factor}, with {@code factor}
 * interpreted as a integer number.
@@ -467,8 +461,7 @@ Complex Complex::operator-()
 * @param  subtrahend value to be subtracted from this {@code Complex}.
 * @return {@code this - subtrahend}.
 */
-Complex Complex::operator-(Complex &subtrahend)
-//Complex Complex::subtract(Complex &subtrahend)
+Complex Complex::operator-(const Complex &subtrahend)
 {
 	if (IsNaN || subtrahend.IsNaN)
 	{
@@ -744,7 +737,7 @@ Complex Complex::log()
 * @param  x exponent to which this {@code Complex} is to be raised.
 * @return <code> this<sup>x</sup></code>.     *
 */
-Complex Complex::pow(Complex &x)
+Complex Complex::pow(const Complex &x)
 {
 	return (this->log() * x).exp();
 }
@@ -1156,7 +1149,7 @@ vector<Complex> Complex::nthRoots(int n)
 * @return a new Complex number instance.
 * @see #valueOf(double, double)
 */
-Complex Complex::createComplex(double realPart,double imaginaryPart)
+Complex Complex::createComplex(const double realPart,const double imaginaryPart)
 {
 	Complex c(realPart, imaginaryPart);
 	return c;
