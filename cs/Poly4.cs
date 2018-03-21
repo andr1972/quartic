@@ -21,15 +21,15 @@ namespace polyRoots
             if (a.Equals(Complex.ZERO)) throw new Exception();
         }
 
-        Complex find_maxB2_4A(Complex[] cubicRoots)
+        Complex findMaxDelta(Complex[] cubicRoots)
         {
             int k = 0;
             double maxModulus = 0;
             for (int i = 0; i < 3; i++)
             {
                 Complex y = cubicRoots[i];
-                Complex v = B.multiply(B).subtract(A.multiply(y).multiply(4));
-                double modulus = v.abs();
+                Complex Delta = B.multiply(B).subtract(A.multiply(y).multiply(4));
+                double modulus = Delta.abs();
                 if (modulus > maxModulus)
                 {
                     maxModulus = modulus;
@@ -59,10 +59,10 @@ namespace polyRoots
                         C * C + B * D - A * E * 4,
                         -(B * C * D - B * B * E - A * D * D));
                 subpoly.solve();
-                Complex y = find_maxB2_4A(subpoly.x);
-                Complex B2_4A = (B * B - A * y * 4).sqrt();
+                Complex y = findMaxDelta(subpoly.x);
+                Complex DeltaRoot = (B * B - A * y * 4).sqrt();
                 Complex G, g, H, h;
-                if (B2_4A.abs() < 1e-12)
+                if (DeltaRoot.abs() < 1e-12)
                 {
                     G = B * 0.5;
                     g = G;
@@ -71,9 +71,9 @@ namespace polyRoots
                 }
                 else
                 {
-                    G = (B + B2_4A) * 0.5;
-                    g = (B - B2_4A) * 0.5;
-                    Complex part = (B * (C - y) - A * D * 2) / (B2_4A * 2);
+                    G = (B + DeltaRoot) * 0.5;
+                    g = (B - DeltaRoot) * 0.5;
+                    Complex part = (B * (C - y) - A * D * 2) / (DeltaRoot * 2);
                     H = (C - y) * 0.5 + part;
                     h = (C - y) * 0.5 - part;
                 }
@@ -105,6 +105,8 @@ namespace polyRoots
         {
             Console.WriteLine("{0}x^4 + {1}x^3 +{2}x^2 + {3}x + {4}",
                 A, B, C,D,E);
+            for (int i = 0; i < 4; i++)
+                Console.WriteLine("x{0}= {1}", i, x[i]);
         }
     }
 

@@ -3,7 +3,7 @@
 
 class Poly4
 {
-	Complex find_maxB2_4A(Complex* cubicRoots);
+	Complex findMaxDelta(Complex* cubicRoots);
 public:
 	Complex A, B, C, D, E;
 	Complex x[4];

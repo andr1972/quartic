@@ -21,15 +21,15 @@ public class Poly4 {
         if (a.equals(Complex.ZERO)) throw new Exception();
     }
 
-    Complex find_maxB2_4A(Complex[] cubicRoots)
+    Complex findMaxDelta(Complex[] cubicRoots)
     {
     	int k = 0;
     	double maxModulus = 0;
 		for (int i=0; i<3; i++)
 		{
 			Complex y = cubicRoots[i];
-			Complex v = B.multiply(B).subtract(A.multiply(y).multiply(4));
-			double modulus = v.abs();
+			Complex Delta = B.multiply(B).subtract(A.multiply(y).multiply(4));
+			double modulus = Delta.abs();
 			if (modulus>maxModulus)
 			{
 				maxModulus = modulus;
@@ -59,10 +59,10 @@ public class Poly4 {
             		C.multiply(C).add(B.multiply(D)).subtract(A.multiply(E).multiply(4)),
             		B.multiply(C).multiply(D).subtract(B.multiply(B).multiply(E)).subtract(A.multiply(D).multiply(D)).negate());
             subpoly.solve();
-            Complex y = find_maxB2_4A(subpoly.x);
-            Complex B2_4A = B.multiply(B).subtract(A.multiply(y).multiply(4)).sqrt();
+            Complex y = findMaxDelta(subpoly.x);
+            Complex DeltaRoot = B.multiply(B).subtract(A.multiply(y).multiply(4)).sqrt();
             Complex G,g,H,h;
-            if (B2_4A.abs()<1e-12)
+            if (DeltaRoot.abs()<1e-12)
             {
             	G = B.multiply(0.5);
 	            g = G;
@@ -71,9 +71,9 @@ public class Poly4 {
             }
             else
             {
-	            G = B.add(B2_4A).multiply(0.5);
-	            g = B.subtract(B2_4A).multiply(0.5);
-	            Complex part = B.multiply(C.subtract(y)).subtract(A.multiply(D).multiply(2)).divide(B2_4A).multiply(0.5);
+	            G = B.add(DeltaRoot).multiply(0.5);
+	            g = B.subtract(DeltaRoot).multiply(0.5);
+	            Complex part = B.multiply(C.subtract(y)).subtract(A.multiply(D).multiply(2)).divide(DeltaRoot).multiply(0.5);
 	            H = C.subtract(y).multiply(0.5).add(part);
 	            h = C.subtract(y).multiply(0.5).subtract(part);
             }

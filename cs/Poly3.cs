@@ -109,6 +109,9 @@ namespace polyRoots
 
         public void print()
         {
+            Console.WriteLine("{0}x^3 + {1}x^2 +{2}x + {3}", A, B, C, D);
+            for (int i = 0; i < 3; i++)
+                Console.WriteLine("x{0}= {1}", i, x[i]);
         }
     }
 }
