@@ -13,6 +13,7 @@ public:
 	Complex x[3];
 	Poly3(Complex &a, Complex &b, Complex &c, Complex &d);
 	~Poly3(){};
+	double maxDist(Complex *roots);
 	void solve();
 	void check();
 	void print();
