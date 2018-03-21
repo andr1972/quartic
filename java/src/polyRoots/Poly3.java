@@ -71,9 +71,10 @@ public class Poly3 {
 		}
 		else
 		{
-			Complex temp = (q.multiply(q).add(p.multiply(p).multiply(p).multiply((double)4/27))).sqrt();
-			Complex z0 = Complex.ZERO.subtract(q).add(temp);
-			z0 = z0.divide(2);
+			Complex t2 = q.multiply(q).add(p.multiply(p).multiply(p).multiply((double)4/27));
+			if (t2.abs() < 1e-13) t2 = Complex.ZERO; //double root
+			Complex temp = t2.sqrt();
+			Complex z0 = Complex.ZERO.subtract(q).add(temp).divide(2);
 			Complex v0 = z0.nthRoot(3);
 			Complex u = Complex.ZERO.subtract(q).subtract(z0).nthRoot(3);
 
