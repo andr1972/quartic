@@ -6,7 +6,7 @@ class Poly3
 	Complex p, q;
 	void canonicalForm();
 	Complex ytox(Complex y);
-	int find_m_from_eps(Complex z, Complex *eps);
+	int find_m_from_e(Complex z, Complex *eps);
 	int find_l_for_m(int m);
 public:
 	Complex A, B, C, D;

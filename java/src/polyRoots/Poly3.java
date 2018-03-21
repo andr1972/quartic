@@ -35,11 +35,11 @@ public class Poly3 {
 		return y.subtract(B.divide(A.multiply(3)));
 	}
 
-	int find_m_from_eps(Complex z, Complex[] eps) throws Exception
+	int find_m_from_e(Complex z, Complex[] e) throws Exception
 	{
 		for (int i=0; i<3; i++)
 		{
-			Complex r = z.subtract(eps[i]);
+			Complex r = z.subtract(e[i]);
 			if (r.abs()<1e-7)
 			{
 				return i;
@@ -71,25 +71,25 @@ public class Poly3 {
 		}
 		else
 		{
-			Complex t2 = q.multiply(q).add(p.multiply(p).multiply(p).multiply((double)4/27));
-			if (t2.abs() < 1e-13) t2 = Complex.ZERO; //double root
-			Complex temp = t2.sqrt();
-			Complex z0 = Complex.ZERO.subtract(q).add(temp).divide(2);
+			Complex z2 = q.multiply(q).add(p.multiply(p).multiply(p).multiply((double)4/27));
+			if (z2.abs() < 1e-13) z2 = Complex.ZERO; //double root
+			Complex z = z2.sqrt();
+			Complex z0 = Complex.ZERO.subtract(q).add(z).divide(2);
 			Complex v0 = z0.nthRoot(3);
 			Complex u = Complex.ZERO.subtract(q).subtract(z0).nthRoot(3);
 
-			temp = v0.multiply(u).divide(p).multiply(-3);
-			Complex[] eps = new Complex[3];
-			eps[0] = new Complex(1,0);
-			eps[1] = new Complex(-1.0/2,Math.sqrt(3)/2);
-			eps[2] = new Complex(-1.0/2,-Math.sqrt(3)/2);
-			int m = find_m_from_eps(temp,eps);
+			z = v0.multiply(u).divide(p).multiply(-3);
+			Complex[] e = new Complex[3];
+			e[0] = new Complex(1,0);
+			e[1] = new Complex(-1.0/2,Math.sqrt(3)/2);
+			e[2] = new Complex(-1.0/2,-Math.sqrt(3)/2);
+			int m = find_m_from_e(z,e);
 			int n = find_l_for_m(m);
-			Complex u0 = eps[n].multiply(u);
+			Complex u0 = e[n].multiply(u);
 			Complex []y = new Complex[3];
 			y[0] = v0.add(u0);
-			y[1] = (eps[1].multiply(v0)).add(eps[1].multiply(eps[1]).multiply(u0));
-			y[2] = (eps[1].multiply(eps[1]).multiply(v0)).add(eps[1].multiply(u0));
+			y[1] = (e[1].multiply(v0)).add(e[1].multiply(e[1]).multiply(u0));
+			y[2] = (e[1].multiply(e[1]).multiply(v0)).add(e[1].multiply(u0));
 			for (int i=0; i<3; i++)
 				x[i] = ytox(y[i]);
 		}

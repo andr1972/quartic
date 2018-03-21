@@ -25,11 +25,11 @@ Complex Poly3::ytox(Complex y)
 	return y - B/(A*3);
 }
 
-int Poly3::find_m_from_eps(Complex z, Complex *eps)
+int Poly3::find_m_from_e(Complex z, Complex *e)
 {
 	for (int i = 0; i < 3; i++)
 	{
-		Complex r = z - eps[i];
+		Complex r = z - e[i];
 		if (r.abs() < 1e-7)
 		{
 			return i;
@@ -67,17 +67,17 @@ void Poly3::solve()
 		Complex v0 = z0.nthRoot(3);
 		Complex u = (-q-z0).nthRoot(3);
 		temp = v0 * u / p* (-3);
-		Complex eps[3];
-		eps[0] = Complex::createComplex(1, 0);
-		eps[1] = Complex::createComplex(-1.0 / 2, sqrt(3) / 2);
-		eps[2] = Complex::createComplex(-1.0 / 2, -sqrt(3) / 2);
-		int m = find_m_from_eps(temp, eps);
+		Complex e[3];
+		e[0] = Complex::createComplex(1, 0);
+		e[1] = Complex::createComplex(-1.0 / 2, sqrt(3) / 2);
+		e[2] = Complex::createComplex(-1.0 / 2, -sqrt(3) / 2);
+		int m = find_m_from_e(temp, e);
 		int n = find_l_for_m(m);
-		Complex u0 = eps[n]* u;
+		Complex u0 = e[n]* u;
 		Complex y[3];
 		y[0] = v0 + u0;
-		y[1] = eps[1]* v0 + eps[1]* eps[1]* u0;
-		y[2] = eps[1]* eps[1]* v0 + eps[1]* u0;
+		y[1] = e[1]* v0 + e[1]* e[1]* u0;
+		y[2] = e[1]* e[1]* v0 + e[1]* u0;
 		for (int i = 0; i < 3; i++)
 			x[i] = ytox(y[i]);
 	}
