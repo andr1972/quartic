@@ -71,9 +71,10 @@ namespace polyRoots
             }
             else
             {
-                Complex temp = (q * q + p * p * p * 4.0 / 27.0).sqrt();
-                Complex z0 = temp - q;
-                z0 = z0 / 2;
+                Complex t2 = (q * q + p * p * p * 4.0 / 27.0);
+                if (t2.abs() < 1e-13) t2 = Complex.ZERO; //double root
+                Complex temp = t2.sqrt();
+                Complex z0 = (temp - q) / 2;
                 Complex v0 = z0.nthRoot(3);
                 Complex u = (-q - z0).nthRoot(3);
                 temp = v0 * u / p * (-3);
